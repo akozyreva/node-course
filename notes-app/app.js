@@ -11,8 +11,26 @@ yargs.version('1.1.0')
 yargs.command({
   command: 'add',
   describe: 'Add a new note',
-  handler: function() {
-    console.log("Adding a new note!")
+  // specify the arguments of our command
+  builder: {
+    title: {
+      describe: 'Note title',
+      // renquired argument
+      demandOption: true,
+      type: 'string'
+    },
+    body: {
+      describe: 'Note body',
+      demandOption: true,
+      type: 'string'
+    }
+  },
+  // from handler we have an access to builder via argv obj
+  // and run the commmand to see results
+  // node app.js add --title=2 --body=sss
+  handler: function(argv) {
+    console.log(`Title is ${argv.title}`)
+    console.log(`Body is ${argv.body}`)
   }
 })
 
@@ -39,7 +57,8 @@ yargs.command({
     console.log("Listing the note")
   }
 })
-console.log(yargs.argv)
+
+yargs.parse()
 
 // add, remove, read, list
 
