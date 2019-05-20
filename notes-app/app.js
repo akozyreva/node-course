@@ -30,7 +30,7 @@ yargs.command({
   // from handler we have an access to builder via argv obj
   // and run the commmand to see results
   // node app.js add --title=2 --body=sss
-  handler: function(argv) {
+  handler(argv) {
     console.log(`Title is ${argv.title}`)
     console.log(`Body is ${argv.body}`)
     notes.addNote(argv.title, argv.body)
@@ -48,7 +48,7 @@ yargs.command({
       type: 'string'
     }
   },
-  handler: function(argv) {
+  handler(argv) {
     console.log(`Removing the note ${argv.title}`)
     notes.removeNote(argv.title)
   }
@@ -57,16 +57,24 @@ yargs.command({
 yargs.command({
   command: 'read',
   describe: 'Reading note',
-  handler: function() {
-    console.log("Reading the note")
+  builder: {
+    title: {
+      describe: 'Note title',
+      // renquired argument
+      demandOption: true,
+      type: 'string'
+    }
+  },
+  handler(argv) {
+    notes.readNote(argv.title)
   }
 })
 
 yargs.command({
   command: 'list',
-  describe: 'Listing note',
-  handler: function() {
-    console.log("Listing the note")
+  describe: 'Listing notes',
+  handler() {
+    notes.getNotes()
   }
 })
 

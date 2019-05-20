@@ -1,7 +1,28 @@
 const fs = require('fs')
 const chalk = require('chalk')
 
-const getNotes = () => 'Your notes....'
+
+// listing notes
+const getNotes = () => {
+    console.log(chalk.green.inverse('Your notes'))
+    const notes = loadNotes()
+    notes.forEach(note => console.log(note.title))
+}
+
+
+// read note by title
+const readNote = (title) => {
+  const notes = loadNotes()
+  // checking, that title already exists
+  noteTitleOccur = NoteAlreadyExist(notes, title)
+  // if found occutence, stop execution
+  if (noteTitleOccur === -1) {
+    console.log('There is no such note, sorry')
+    return
+  }
+  console.log(notes[noteTitleOccur])
+
+}
 
 // adding note
 const addNote = (title, body) => {
@@ -72,5 +93,6 @@ const loadNotes = () =>  {
 module.exports = {
   addNote,
   getNotes,
-  removeNote
+  removeNote,
+  readNote
 }
