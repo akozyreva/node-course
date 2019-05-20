@@ -37,6 +37,7 @@ yargs.command({
   }
 })
 
+//  node app.js remove --title=2
 yargs.command({
   command: 'remove',
   describe: 'Remove note',
@@ -54,6 +55,7 @@ yargs.command({
   }
 })
 
+// node app.js read --title=222
 yargs.command({
   command: 'read',
   describe: 'Reading note',
@@ -70,6 +72,7 @@ yargs.command({
   }
 })
 
+// node app.js list
 yargs.command({
   command: 'list',
   describe: 'Listing notes',
