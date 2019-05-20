@@ -29,6 +29,14 @@ const addNote = (title, body) => {
   const notes = loadNotes()
   // checking, that title already exists
   noteTitleOccur = NoteAlreadyExist(notes, title)
+  // use debugger for gebugging
+  // and in cmd run this commmand
+  // node inspect app.js add --title=333 --body=333
+  // then in chrome
+  // chrome://inspect/#devices
+  // type in console    restrart
+  // and debugger will restart
+  debugger
   // if found occutence, stop execution
   if (noteTitleOccur != -1) {
     console.log('Title already exists')
