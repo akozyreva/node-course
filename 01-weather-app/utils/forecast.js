@@ -25,10 +25,7 @@ const forecast = (lat, long, callback) => {
       // for example, invalid request
       callback('Unable to find location', undefined)
     } else {
-      callback(undefined, {
-        summary: response.body.daily.data[0].summary,
-        prediction:  `It's currently ${response.body.currently.temperature} degreess out. There is a ${response.body.currently.precipProbability}% chance of rain`
-      })
+      callback(undefined, `${response.body.daily.data[0].summary} It's currently ${response.body.currently.temperature} degreess out. There is a ${response.body.currently.precipProbability}% chance of rain`)
     }
   })
 }
