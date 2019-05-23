@@ -62,6 +62,24 @@ app.get('/weather', (req, res) => {
   })
 })
 
+// we can specify 404 for different routes
+app.get('/help/*', (req, res) => {
+  res.render('404', {
+    msg: 'Help article not found',
+    title: '404 not found',
+    name: "Anna"
+  })
+})
+
+// make route for everything else in order to generate 404
+app.get('*', (req, res) => {
+  res.render('404', {
+    msg: 'Sorry. Try another page',
+    title: '404 not found',
+    name: "Anna"
+  })
+})
+
 
 app.listen(3000, () => {
   console.log('Server is up on port 3000')
