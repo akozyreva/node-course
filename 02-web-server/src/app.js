@@ -1,37 +1,28 @@
-// configuration of express.js and starting it
-// how to run - in root dir
-// node src/app.js
-// for running continuously
 // nodemon src/app.js
+// http://localhost:3000/
+
+const path = require('path')
 const express = require('express')
+
+console.log(__dirname)
+console.log(__filename)
+
+console.log(path.join(__dirname, '../public'))
 
 // initialize app
 const app = express()
+const publiDir = path.join(__dirname, '../public')
+app.use(express.static(publiDir))
 
-// specify main route - what to do?
-// req- request
-// res - response
-// app.com
-// app.com/help
-// app.com/about
-app.get('', (req, res) => {
-  res.send('Hello express!')
-})
-
-app.get('/help', (req, res) => {
-  res.send('Help page')
-})
-
-app.get('/about', (req, res) => {
-  res.send('About')
-})
 
 app.get('/weather', (req, res) => {
-  res.send('Weather')
+  res.send({
+    forecast: '20C',
+    location: 'Frankfurt'
+  })
 })
 
-// start server - specify port
-// http://localhost:3000/
+
 app.listen(3000, () => {
   console.log('Server is up on port 3000')
 })
