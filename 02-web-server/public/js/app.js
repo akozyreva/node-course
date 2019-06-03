@@ -8,6 +8,10 @@ fetch('http://puzzle.mead.io/puzzle').then( (res) => {
 
 
 const weatherForm = document.querySelector('form')
+const msg1 = document.querySelector('#msg-1')
+const msg2 = document.querySelector('#msg-2')
+
+msg1.textContent = ''
 
 
 weatherForm.addEventListener('submit', (event) => {
@@ -21,8 +25,7 @@ weatherForm.addEventListener('submit', (event) => {
     fetch(`http://localhost:3000/weather?address=${search}`).then( res => {
         res.json().then(data => {
             //console.log(data)
-            console.log(data.location)
-            console.log(data.forecastData)
-        }).catch( er => console.log(`Error with retrieving data ${er}`))
-    }).catch(er => console.log(`Problem with senging req ${er}`))
+            msg1.textContent = data.location + ' ' + data.forecastData
+        }).catch( er => msg2.textContent =`Error with retrieving data ${er}`)
+    }).catch(er => msg2.textContent = `Problem with senging req ${er}`)
 })
